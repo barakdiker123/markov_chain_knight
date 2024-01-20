@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-01-20 Sat 13:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Knight from corner to corner</title>
+<meta name="author" content="Barak-Nadav Diker" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Knight from corner to corner</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7364669">1. Abstract</a></li>
+<li><a href="#orgbc4f702">2. Code</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7364669" class="outline-2">
+<h2 id="org7364669"><span class="section-number-2">1.</span> Abstract</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Here I am creating a simulation of a knight which starts from the corner
+(0,0) and randomly moves uniformly from all possible knight moves
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc4f702" class="outline-2">
+<h2 id="orgbc4f702"><span class="section-number-2">2.</span> Code</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Here is an simulation of the knight movement from the corner until he returns to the corner
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">from</span> random <span style="color: #9d0006;">import</span> choice
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">in_range</span>(x: <span style="color: #af3a03;">int</span>):
+    <span style="color: #9d0006;">return</span> x &gt;= <span style="color: #8f3f71; font-weight: bold;">0</span> <span style="color: #9d0006;">and</span> x &lt;= <span style="color: #8f3f71; font-weight: bold;">7</span>
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">possible_moves_from_point</span>(x: <span style="color: #af3a03;">int</span>, y: <span style="color: #af3a03;">int</span>) -&gt; <span style="color: #af3a03;">list</span>:
+    <span style="color: #076678;">possible_moves</span> = []
+    <span style="color: #9d0006;">if</span> in_range(x + <span style="color: #8f3f71; font-weight: bold;">2</span>) <span style="color: #9d0006;">and</span> in_range(y + <span style="color: #8f3f71; font-weight: bold;">1</span>):
+        possible_moves.append([x + <span style="color: #8f3f71; font-weight: bold;">2</span>, y + <span style="color: #8f3f71; font-weight: bold;">1</span>])
+
+    <span style="color: #9d0006;">if</span> in_range(x + <span style="color: #8f3f71; font-weight: bold;">2</span>) <span style="color: #9d0006;">and</span> in_range(y - <span style="color: #8f3f71; font-weight: bold;">1</span>):
+        possible_moves.append([x + <span style="color: #8f3f71; font-weight: bold;">2</span>, y - <span style="color: #8f3f71; font-weight: bold;">1</span>])
+    <span style="color: #9d0006;">if</span> in_range(x - <span style="color: #8f3f71; font-weight: bold;">2</span>) <span style="color: #9d0006;">and</span> in_range(y + <span style="color: #8f3f71; font-weight: bold;">1</span>):
+        possible_moves.append([x - <span style="color: #8f3f71; font-weight: bold;">2</span>, y + <span style="color: #8f3f71; font-weight: bold;">1</span>])
+    <span style="color: #9d0006;">if</span> in_range(x - <span style="color: #8f3f71; font-weight: bold;">2</span>) <span style="color: #9d0006;">and</span> in_range(y - <span style="color: #8f3f71; font-weight: bold;">1</span>):
+        possible_moves.append([x - <span style="color: #8f3f71; font-weight: bold;">2</span>, y - <span style="color: #8f3f71; font-weight: bold;">1</span>])
+    <span style="color: #9d0006;">if</span> in_range(x + <span style="color: #8f3f71; font-weight: bold;">1</span>) <span style="color: #9d0006;">and</span> in_range(y + <span style="color: #8f3f71; font-weight: bold;">2</span>):
+        possible_moves.append([x + <span style="color: #8f3f71; font-weight: bold;">1</span>, y + <span style="color: #8f3f71; font-weight: bold;">2</span>])
+    <span style="color: #9d0006;">if</span> in_range(x + <span style="color: #8f3f71; font-weight: bold;">1</span>) <span style="color: #9d0006;">and</span> in_range(y - <span style="color: #8f3f71; font-weight: bold;">2</span>):
+        possible_moves.append([x + <span style="color: #8f3f71; font-weight: bold;">1</span>, y - <span style="color: #8f3f71; font-weight: bold;">2</span>])
+    <span style="color: #9d0006;">if</span> in_range(x - <span style="color: #8f3f71; font-weight: bold;">1</span>) <span style="color: #9d0006;">and</span> in_range(y + <span style="color: #8f3f71; font-weight: bold;">2</span>):
+        possible_moves.append([x - <span style="color: #8f3f71; font-weight: bold;">1</span>, y + <span style="color: #8f3f71; font-weight: bold;">2</span>])
+    <span style="color: #9d0006;">if</span> in_range(x - <span style="color: #8f3f71; font-weight: bold;">1</span>) <span style="color: #9d0006;">and</span> in_range(y - <span style="color: #8f3f71; font-weight: bold;">2</span>):
+        possible_moves.append([x - <span style="color: #8f3f71; font-weight: bold;">1</span>, y - <span style="color: #8f3f71; font-weight: bold;">2</span>])
+    <span style="color: #9d0006;">return</span> possible_moves
+
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">print_positions_from_array</span>(array_point: <span style="color: #af3a03;">list</span>):
+    <span style="color: #076678;">arr</span> = [[<span style="color: #8f3f71; font-weight: bold;">0</span> <span style="color: #9d0006;">for</span> i <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">range</span>(<span style="color: #8f3f71; font-weight: bold;">8</span>)] <span style="color: #9d0006;">for</span> j <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">range</span>(<span style="color: #8f3f71; font-weight: bold;">8</span>)]
+    <span style="color: #a89984;"># </span><span style="color: #a89984;">for i in range(8):</span>
+    <span style="color: #a89984;">#    </span><span style="color: #a89984;">for j in range(8):</span>
+    <span style="color: #a89984;">#        </span><span style="color: #a89984;">arr[i][j] = 0</span>
+    <span style="color: #9d0006;">for</span> point <span style="color: #9d0006;">in</span> array_point:
+        arr[point[<span style="color: #8f3f71; font-weight: bold;">0</span>]][point[<span style="color: #8f3f71; font-weight: bold;">1</span>]] = <span style="color: #8f3f71; font-weight: bold;">1</span>
+    <span style="color: #9d0006;">return</span> arr
+
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">print_arr</span>(arr):
+    <span style="color: #9d0006;">for</span> i <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">range</span>(<span style="color: #8f3f71; font-weight: bold;">8</span>):
+        <span style="color: #9d0006;">for</span> j <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">range</span>(<span style="color: #8f3f71; font-weight: bold;">8</span>):
+            <span style="color: #af3a03;">print</span>(arr[i][j], end=<span style="color: #79740e;">""</span>)
+        <span style="color: #af3a03;">print</span>()
+
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">print(possible_moves_from_point(2, 2))</span>
+<span style="color: #a89984;"># </span><span style="color: #a89984;">print(choice(possible_moves_from_point(0, 0)))</span>
+<span style="color: #a89984;">## </span><span style="color: #a89984;">arr = print_positions_from_array([[1, 1], [1, 2]])</span>
+<span style="color: #a89984;">## </span><span style="color: #a89984;">print_arr(arr)</span>
+<span style="color: #a89984;">#</span>
+<span style="color: #a89984;"># </span><span style="color: #a89984;">arr = print_positions_from_array(possible_moves_from_point(2, 2))</span>
+<span style="color: #a89984;"># </span><span style="color: #a89984;">print_arr(arr)</span>
+
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">run_simulation</span>():
+    <span style="color: #076678;">position</span> = [<span style="color: #8f3f71; font-weight: bold;">0</span>, <span style="color: #8f3f71; font-weight: bold;">0</span>]
+    <span style="color: #076678;">count</span> = <span style="color: #8f3f71; font-weight: bold;">0</span>
+    <span style="color: #9d0006;">while</span> <span style="color: #8f3f71;">True</span>:
+        <span style="color: #076678;">position</span> = choice(possible_moves_from_point(position[<span style="color: #8f3f71; font-weight: bold;">0</span>], position[<span style="color: #8f3f71; font-weight: bold;">1</span>]))
+        <span style="color: #a89984;"># </span><span style="color: #a89984;">print(position)</span>
+        <span style="color: #076678;">count</span> += <span style="color: #8f3f71; font-weight: bold;">1</span>
+        <span style="color: #9d0006;">if</span> position[<span style="color: #8f3f71; font-weight: bold;">0</span>] == <span style="color: #8f3f71; font-weight: bold;">0</span> <span style="color: #9d0006;">and</span> position[<span style="color: #8f3f71; font-weight: bold;">1</span>] == <span style="color: #8f3f71; font-weight: bold;">0</span>:
+            <span style="color: #9d0006;">break</span>
+    <span style="color: #9d0006;">return</span> count
+
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">print(run_simulation())</span>
+
+<span style="color: #076678;">total_simulation</span> = [run_simulation() <span style="color: #9d0006;">for</span> _ <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">range</span>(<span style="color: #8f3f71; font-weight: bold;">300</span>)]
+<span style="color: #9d0006;">return</span> <span style="color: #af3a03;">sum</span>(total_simulation) / <span style="color: #af3a03;">len</span>(total_simulation)
+</pre>
+</div>
+
+<pre class="example">
+186.52666666666667
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Barak-Nadav Diker</p>
+<p class="date">Created: 2024-01-20 Sat 13:32</p>
+</div>
+</body>
+</html>
