@@ -78,3 +78,4 @@ return sum(total_simulation) / len(total_simulation)
 
 #+RESULTS:
 : 152.86666666666667
+* Barak the king !!!
