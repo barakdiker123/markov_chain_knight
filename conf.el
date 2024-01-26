@@ -29,3 +29,4 @@
 ;;; conf.el ends here
 
 (setq auth-sources '("~/.authinfo"))
+(setq auth-sources '("~/.authinfo"))
