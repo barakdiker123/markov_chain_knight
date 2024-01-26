@@ -26,7 +26,7 @@
               :auth 'forge)
 
 (provide 'conf)
-;;; conf.el ends here
+;; bla bla bla
 
 (setq auth-sources '("~/.authinfo"))
 (setq auth-sources '("~/.authinfo"))
